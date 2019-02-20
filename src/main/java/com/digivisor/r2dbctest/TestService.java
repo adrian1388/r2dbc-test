@@ -68,12 +68,12 @@ public class TestService {
     	}
         // Create master
         SerialParameters parameters = new SerialParameters();
-        parameters.setPortName("cu.Bluetooth-Incoming-Port");
+        parameters.setPortName("/dev/ttyUSB0");
         parameters.setOpenDelay(1000);
         parameters.setEncoding(Modbus.SERIAL_ENCODING_RTU);
         
         
-    	ModbusSerialMaster master;
+    	ModbusSerialMaster master = null;
     	try {
     	    // master = new ModbusTCPMaster(<address>);  // Uses port 502 and a timeout of 3000ms
     	    // master = new ModbusTCPMaster(<address>, <port>); // Uses a timeout of 3000ms
@@ -82,7 +82,11 @@ public class TestService {
         	logger.info("Master: " + master);
     	}
     	catch (Exception e) {
+    	    logger.info("PARAMETERS: " + parameters);
     	    logger.error("Cannot connect to slave - %s", e);
     	}
+    	finally {
+			master.disconnect();
+		}
     }
 }

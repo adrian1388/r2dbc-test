@@ -63,7 +63,7 @@
 		<dependency>
 		    <groupId>com.ghgande</groupId>
 		    <artifactId>j2mod</artifactId>
-		    <version>LATEST</version>
+		    <version>2.5.4-SNAPSHOT</version>
 		</dependency>
 		
 		

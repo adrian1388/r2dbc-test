@@ -87,7 +87,7 @@ public class TestService {
     	
         // Create master
         SerialParameters parameters = new SerialParameters();
-        parameters.setPortName("/dev/ttyUSB0");// For Windows: "\\COM6" // For Linux: "/dev/ttyUSB0"
+        parameters.setPortName("\\COM6");// For Windows: "\\COM6" // For Linux: "/dev/ttyUSB0"
         parameters.setBaudRate(9600);
         parameters.setDatabits(8);
         parameters.setParity(AbstractSerialConnection.NO_PARITY);
@@ -157,8 +157,11 @@ public class TestService {
 //    			System.out.println("second: " + second);
 //    			System.out.println("TO bytes size 1: " + slaveResponse[i].toBytes().length);
 //    			System.out.println("TO bytes size 2: " + slaveResponse[i+1].toBytes().length);
-    			output += "reg[" + i + "] = " + toFloat(slaveResponse[i].toBytes(), slaveResponse[i+1].toBytes()) + "<br/>";
-    			
+    			if (unitId == 10) {
+    				output += "reg[" + i + "] = " + toFloat(slaveResponse[i].toBytes(), slaveResponse[i+1].toBytes()) + "<br/>";
+    			} else {
+    				output += "reg[" + i + "] = " + slaveResponse[i] + "<br/>";
+    			}
     			i++;
     		}
             
